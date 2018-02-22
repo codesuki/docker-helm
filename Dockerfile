@@ -1,9 +1,8 @@
-FROM alpine:3.6 as build
-MAINTAINER Mario Siegenthaler <mario.siegenthaler@linkyard.ch>
+FROM alpine:3.7 as build
 
 RUN apk add --update --no-cache ca-certificates git
 
-ARG VERSION=v2.7.2
+ARG VERSION=v2.8.1
 ARG FILENAME=helm-${VERSION}-linux-amd64.tar.gz
 
 WORKDIR /
@@ -11,8 +10,7 @@ WORKDIR /
 RUN apk add --update -t deps curl tar gzip
 RUN curl -L http://storage.googleapis.com/kubernetes-helm/${FILENAME} | tar zxv -C /tmp
 
-# The image we keep
-FROM alpine:3.6
+FROM alpine:3.7
 
 RUN apk add --update --no-cache git ca-certificates
 
