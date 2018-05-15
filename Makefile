@@ -7,6 +7,7 @@ upgrade:
 	sed -i "" "s/^VERSION=.*$$/HELM_VERSION=$$VERSION/" Makefile
 	git add Dockerfile Makefile
 	git commit -m "chore: upgrade helm to $$VERSION"
+	git tag -a -m $$VERSION $$VERSION
 
 build: Dockerfile
 	docker build . -t codesuki/helm
