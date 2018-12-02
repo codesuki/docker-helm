@@ -1,10 +1,10 @@
 .PHONY: upgrade
 
-VERSION ?= v2.9.0
+VERSION ?= v2.11.0
 
 upgrade:
-	sed -i "" "s/^ARG VERSION=:.*$$/FROM codesuki\/ARG VERSION=$$VERSION/" Dockerfile
-	sed -i "" "s/^VERSION=.*$$/HELM_VERSION=$$VERSION/" Makefile
+	sed -i "" "s/^ARG VERSION=.*$$/ARG VERSION=$$VERSION/" Dockerfile
+	sed -i "" "s/^VERSION ?= .*$$/VERSION ?= $$VERSION/" Makefile
 	git add Dockerfile Makefile
 	git commit -m "chore: upgrade helm to $$VERSION"
 	git tag -a -m $$VERSION $$VERSION
